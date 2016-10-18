@@ -1,5 +1,5 @@
 Functions Included and their work:
-1. void menu(): Display the option for Admin or User login or exit.
+1. void mainMenu(): Display the option for Admin or User login or exit.
 
 2. void adminMenu(): Will ask for admin password first then will be able to view menu for admin.
 
