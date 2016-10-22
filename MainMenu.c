@@ -19,7 +19,7 @@ void mainMenu()
     switch(choice)
     {
     case 1:
-        //adminMenu();
+        adminMenu();
         break;
     case 2:
         //userMenu();
