@@ -1,13 +1,16 @@
 
 void adminMenu()
     {
+        FILE *adminpass;
+        adminpass=fopen("AdminPassword.txt","r");
         int passer=0;
-
-        passer=authenticate(1,"AdminWillPass");
-
+        char pass[13];
+        fscanf(adminpass,"%s",pass);
+        decrypt(pass);
+        passer=authenticate(1,pass);
             if(passer==0)
                 {
-                    system("cls");
+                  system("cls");
                     printf("\n\tLimit Exceeded!! \n\tTry Again!!");
                     return;
                 }
@@ -15,5 +18,5 @@ void adminMenu()
                 {
 
                 }
-
+            fclose(adminpass);
     }
