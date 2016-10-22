@@ -2,6 +2,19 @@
 #include<stdlib.h>
 #include<string.h>
 #include<windows.h>
+
+void encrypt(char pass[])
+{
+    int i;
+    for(i=0;i<strlen(pass);i++)
+            pass[i]=pass[i]+10;
+}
+void decrypt(char pass[])
+{
+    int i;
+    for(i=0;i<strlen(pass);i++)
+            pass[i]-=10;
+}
 void fordelay(int j)
 {   int i,k;
     for(i=0;i<j;i++)
@@ -57,12 +70,16 @@ int authenticate(int caser,char pass[])
 
 void adminMenu()
     {
+        FILE *adminpass;
+        adminpass=fopen("AdminPassword.txt","r");
         int passer=0;
-
-        passer=authenticate(1,"AdminWillPass");
+        char pass[13];
+        fscanf(adminpass,"%s",pass);
+        decrypt(pass);
+        passer=authenticate(1,pass);
             if(passer==0)
                 {
-                    system("cls");
+                  system("cls");
                     printf("\n\tLimit Exceeded!! \n\tTry Again!!");
                     return;
                 }
@@ -70,7 +87,7 @@ void adminMenu()
                 {
 
                 }
-
+            fclose(adminpass);
     }
 void mainMenu()
     {
