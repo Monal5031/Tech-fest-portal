@@ -8,3 +8,5 @@ Functions Included and their work:
 4.void close(): Will display the end of the Program.
 
 5.void fordelay(int): Will producde some kind of delay in programs.
+
+6.int authenticate(int, char []): Will authenticate user or admin's password (1 for admin 2 for user)
