@@ -10,3 +10,7 @@ Functions Included and their work:
 5.void fordelay(int): Will producde some kind of delay in programs.
 
 6.int authenticate(int, char []): Will authenticate user or admin's password (1 for admin 2 for user)
+
+7.void encrypt(char pass[]): Encrypt the Password.
+
+8.void decrypt(char pass[]): Decrypt the Password.
