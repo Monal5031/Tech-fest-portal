@@ -1,5 +1,6 @@
 void mainMenu()
     {
+    system("cls");
     int choice,i=0;
     printf(("\n\n\n\tEnter which one you want to select:\n\n"));
     printf("\t1.Admin Login\n");
@@ -26,5 +27,9 @@ void mainMenu()
         break;
     case 3:
         printf("\n\n\tThanks for visiting! Please visit again!\n\n");
+    default:
+        printf("\n\tInvalid Option!!!!! \n\t Give Valid Input");
+        fordelay(100000000000);
+        mainMenu();
     }
     }
