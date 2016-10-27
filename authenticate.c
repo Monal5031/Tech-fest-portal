@@ -1,4 +1,3 @@
-
 int authenticate(int caser,char pass[])
     {
         int passer=0,count=4;
