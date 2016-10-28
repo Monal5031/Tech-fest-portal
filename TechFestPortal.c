@@ -8,7 +8,7 @@ void createEvent()
     char name[30];
     system("cls");
     printf("\n\tPlease Enter the name of event you want to create (Max Size 30): ");
-    inputInfo(name);
+    scanf("%s",name);
     FILE *create;
     FILE *registerevent;
     registerevent=fopen("EventListInfo.txt","a");
@@ -16,35 +16,17 @@ void createEvent()
     printf("\n\tCongratulations! Event Created \n\tPlease Enter Following Information about the event\n\t");
     char time[10];
     printf("Enter Time(with am or pm) **(8 size max)**: ");
-    inputInfo(time);
+    scanf("%s",time);
     fprintf(registerevent,"%s\n",time);
     char info[1000];
     printf("\n\tEnter some Info about the event:");
-    inputInfo(info);
+    scanf("%s",info);
     fprintf(registerevent,"%s\n",info);
     printf("\n\tCongratulations! Event Successfully Registered");
     fclose(registerevent);
     strcat(name,".txt");
     create=fopen(name,"w");
     fclose(create);
-}
-
-
-void inputInfo(char name[])
-{
-
-int i=0;
-    char ch;
-    do{
-        scanf("%c",&ch);
-        if(ch=='\n')
-            break;
-        name[i]=ch;
-        i++;
-    }
-    while(1);
-    name[i]='\0';
-return;
 }
 
 
@@ -153,7 +135,7 @@ void adminMenu()
                     switch(choice)
                     {
                     case 1:
-                       // createEvent();
+                        createEvent();
                         break;
                     case 2:
                        // modifyEvent();
