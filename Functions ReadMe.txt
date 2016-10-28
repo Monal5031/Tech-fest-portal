@@ -15,4 +15,6 @@ Functions Included and their work:
 
 8.void changePassword(char pass[]): Will change the password.
 
-9.void createEvent(): Will create new event
+9. void creatEvent(): Will create a new event.
+
+10.void inputInfo(char name[]): function to input any kind of information.
