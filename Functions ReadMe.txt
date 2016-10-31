@@ -17,4 +17,4 @@ Functions Included and their work:
 
 9. void creatEvent(): Will create a new event.
 
-10.void inputInfo(char name[]): function to input any kind of information.
+10. newUser(): Function to register any new user to the system.
