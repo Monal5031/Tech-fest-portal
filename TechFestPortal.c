@@ -2,6 +2,87 @@
 #include<stdlib.h>
 #include<string.h>
 
+void newUser()
+{
+    printf("\n\t*************Enter following Details*************\n\t");
+    FILE *master;
+    master=fopen("MasterList.txt","a");
+    printf("\n\tEnter your first name(15 letters max) : ");
+    char name[21],lastname[10];
+    scanf("%s",name);
+    printf("\n\tEnter your last name(10 letters max) : ");
+    scanf("%s",lastname);
+    strcat(name," ");
+    strcat(name,lastname);
+    fprintf(master,"%s\n",name);
+    printf("\n\tEnter your College name : ");
+    char college[30];
+    scanf("%s",college);
+    fprintf(master,"%s\n",college);
+    printf("\n\tEnter a password for your account (13 characters maximum):");
+    char pass[13];
+    scanf("%s",pass);
+    fprintf(master,"%s\n",pass);
+    srand(time(NULL));
+    int x=rand();
+    printf("\n\tYour ID is: %d",x);
+    fprintf(master,"%d\n",x);
+    printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
+    int go;
+    scanf("%d",&go);
+    fclose(master);
+    system("cls");
+    printf("\t********REGISTRATION SUCCESSFULL*******");
+    printf("\n\tEnter which event you want to register for:\n\t");
+    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************");
+   // displayEvents();
+    FILE *event;
+    while(1)
+    {
+    printf("\n\tEnter name of event:");
+    char eventname[20];
+    scanf("%s",eventname);
+    strcat(eventname,".txt");
+    event=fopen(eventname,"a");
+    fprintf(event,"%s\n",name);
+    printf("\n\n\tDo you wish to continue?\n\t1.Yes 2.No\n\t");
+    printf("Enter: ");
+    int choice;
+    scanf("%d",&choice);
+    fclose(event);
+    if(choice==2)
+        break;
+    }
+    printf("\n\n\t*******Events successfully Registered*******");
+    return;
+}
+
+void userMenu()
+{
+    system("cls");
+    printf("\n\t1.New user\n\t2.Old User\n\t3.Main Menu");
+    int choice;
+    printf("\n\tEnter your choice:");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+    case 1:
+        system("cls");
+        newUser();
+        break;
+    case 2:
+        system("cls");
+        //oldUser();
+        break;
+    case 3:
+        system("cls");
+        mainMenu();
+    }
+return;
+}
+
+
+
 
 void createEvent()
 {
@@ -129,7 +210,7 @@ void adminMenu()
                 {
                     system("cls");
                     int choice;
-                    printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Main Menu");
+                    printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Access User List\n\t5.Main Menu");
                     printf("\n\tEnter your Choice:");
                     scanf("%d",&choice);
                     switch(choice)
@@ -144,6 +225,8 @@ void adminMenu()
                         changePassword(pass);
                         break;
                     case 4:
+                        //accessList();
+                    case 5:
                         system("cls");
                         printf("Loading");
                         for(j=0;j<=6;j++)
@@ -152,6 +235,7 @@ void adminMenu()
                             printf(".");
                             }
                             mainMenu();
+                            break;
                     }
                 }
             fclose(adminpass);
@@ -190,7 +274,7 @@ void mainMenu()
         adminMenu();
         break;
     case 2:
-        //userMenu();
+        userMenu();
         break;
     case 3:
         printf("\n\n\tThanks for visiting! Please visit again!\n\n");
