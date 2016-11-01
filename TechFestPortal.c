@@ -65,7 +65,7 @@ void newUser()
     system("cls");
     printf("\t********REGISTRATION SUCCESSFULL*******");
     printf("\n\tEnter which event you want to register for:\n\t");
-    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************");
+    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
     viewList();
     FILE *event;
     while(1)
