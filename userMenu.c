@@ -1,7 +1,7 @@
 void userMenu()
 {
     system("cls");
-    printf("\n\t1.New user\n\t2.Old User\n\t3.Main Menu");
+    printf("\n\t1.New user\n\t2.Old User\n\t3.Event Information\n\t4.Main Menu");
     int choice;
     printf("\n\tEnter your choice:");
     scanf("%d",&choice);
@@ -9,13 +9,17 @@ void userMenu()
     {
     case 1:
         system("cls");
-        //newUser();
+        newUser();
         break;
     case 2:
         system("cls");
         //oldUser();
         break;
     case 3:
+        system("cls");
+        viewEventInfo();
+        break;
+    case 4:
         system("cls");
         mainMenu();
     }
