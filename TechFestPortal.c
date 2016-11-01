@@ -2,6 +2,37 @@
 #include<stdlib.h>
 #include<string.h>
 
+
+void credits()
+{
+    FILE *credit;
+    credit=fopen("Credits.txt","r");
+    while(!feof(credit))
+    {
+        char ch;
+        fscanf(credit,"%c",&ch);
+        fordelay(10000001);
+        printf("%c",ch);
+    }
+    printf("\b ");
+    fclose(credit);
+}
+
+
+void viewList()
+{
+    FILE *view;
+    view=fopen("EventList.txt","r");
+    while(!feof(view))
+    {
+        char *event;
+        fscanf(view,"%s",event);
+        printf("%s\n",event);
+
+    }
+}
+
+
 void newUser()
 {
     printf("\n\t*************Enter following Details*************\n\t");
@@ -35,7 +66,7 @@ void newUser()
     printf("\t********REGISTRATION SUCCESSFULL*******");
     printf("\n\tEnter which event you want to register for:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************");
-   // displayEvents();
+    viewList();
     FILE *event;
     while(1)
     {
@@ -288,5 +319,7 @@ void mainMenu()
 int main()
     {
     mainMenu();
+    printf("\n\t*****PROJECT BY:******\n");
+    credits();
     return 0;
     }
