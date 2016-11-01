@@ -1,17 +1,11 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-int main()
-{
-    newUser();
-    return 0;
-}
 void newUser()
 {
     printf("\n\t*************Enter following Details*************\n\t");
     FILE *master;
+    FILE *user;
+    user=fopen("UserList.txt","a");
     master=fopen("MasterList.txt","a");
-    printf("\n\tEnter your first name(10 letters max) : ");
+    printf("\n\tEnter your first name(15 letters max) : ");
     char name[21],lastname[10];
     scanf("%s",name);
     printf("\n\tEnter your last name(10 letters max) : ");
@@ -19,6 +13,8 @@ void newUser()
     strcat(name," ");
     strcat(name,lastname);
     fprintf(master,"%s\n",name);
+    fprintf(user,"%s\n",name);
+    fclose(user);
     printf("\n\tEnter your College name : ");
     char college[30];
     scanf("%s",college);
@@ -31,12 +27,15 @@ void newUser()
     int x=rand();
     printf("\n\tYour ID is: %d",x);
     fprintf(master,"%d\n",x);
+    printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
+    int go;
+    scanf("%d",&go);
     fclose(master);
     system("cls");
     printf("\t********REGISTRATION SUCCESSFULL*******");
-    printf("\n\tEnter which event you want to register for:\n\t");
-    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************");
-   // displayEvents();
+    printf("\n\tEnter which event you want to register for one by one:\n\t");
+    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
+    viewList();
     FILE *event;
     while(1)
     {
@@ -46,7 +45,7 @@ void newUser()
     strcat(eventname,".txt");
     event=fopen(eventname,"a");
     fprintf(event,"%s\n",name);
-    printf("\n\n\tDo you wish to continue?\n\t1.Yes 2.No\n\t");
+    printf("\n\n\tDo you wish to register for more events?\n\t1.Yes 2.No\n\t");
     printf("Enter: ");
     int choice;
     scanf("%d",&choice);
@@ -55,4 +54,10 @@ void newUser()
         break;
     }
     printf("\n\n\t*******Events successfully Registered*******");
+    printf("\n\tDo you wish to continue?\n\t1.Yes\n\t2.No");
+    int next;
+    scanf("%d",&next);
+    if(next==1)
+        mainMenu();
+    return;
 }
