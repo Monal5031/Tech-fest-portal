@@ -18,3 +18,7 @@ Functions Included and their work:
 9. void creatEvent(): Will create a new event.
 
 10. newUser(): Function to register any new user to the system.
+
+11.viewList(): Function to view the list of the events
+
+12. credits(): Function to display the list of members of project.
