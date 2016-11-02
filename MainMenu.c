@@ -13,23 +13,23 @@ void mainMenu()
     printf("Loading");
     for(i=0;i<=6;i++)
         {
-            fordelay(100000000);
+            fordelay(11111111);
             printf(".");
         }
     system("cls");
     switch(choice)
     {
     case 1:
-        adminMenu();
+        adminMenu(0);
         break;
     case 2:
-        //userMenu();
+        userMenu();
         break;
     case 3:
-        printf("\n\n\tThanks for visiting! Please visit again!\n\n");
+        break;
     default:
         printf("\n\tInvalid Option!!!!! \n\t Give Valid Input");
-        fordelay(100000000000);
+        fordelay(100000000);
         mainMenu();
     }
     }
