@@ -1,7 +1,7 @@
 Functions Included and their work:
 1. void mainMenu(): Display the option for Admin or User login or exit.
 
-2. void adminMenu(): Will ask for admin password first then will be able to view menu for admin.
+2. void adminMenu(int ): Will ask for admin password first then will be able to view menu for admin.
 
 3. void userMenu(): Display menu for user. (New or Old registration).
 
@@ -17,8 +17,16 @@ Functions Included and their work:
 
 9. void creatEvent(): Will create a new event.
 
-10. newUser(): Function to register any new user to the system.
+10. void newUser(): Function to register any new user to the system.
 
-11.viewList(): Function to view the list of the events
+11. void viewList(): Function to view the list of the events
 
-12. credits(): Function to display the list of members of project.
+12. void credits(): Function to display the list of members of project.
+
+13. void viewEventInfo(): Function to display Information of all events
+
+14. void filleventInfo(char [],char [],char []): Function to fill the information of the events.
+
+15. void accessUserList() : Function for admin to access the list of all users.
+
+16.int checkPassword(char []): Function to check the strictness of password.
