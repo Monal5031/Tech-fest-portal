@@ -22,15 +22,15 @@ void newUser()
     printf("\n\tEnter a password for your account (13 characters maximum):");
     char pass[13];
     scanf("%s",pass);
-    fprintf(master,"%s\n",pass);
     srand(time(NULL));
     int x=rand();
     printf("\n\tYour ID is: %d",x);
     fprintf(master,"%d\n",x);
+    fprintf(master,"%s\n",pass);
+    fclose(master);
     printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
     int go;
     scanf("%d",&go);
-    fclose(master);
     system("cls");
     printf("\t********REGISTRATION SUCCESSFULL*******");
     printf("\n\tEnter which event you want to register for one by one:\n\t");
