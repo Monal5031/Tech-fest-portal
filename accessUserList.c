@@ -1,15 +1,8 @@
-#include<stdio.h>
-int main()
-{
-    accessUserList();
-    return 0;
-}
-
 void accessUserList()
 {
     FILE *access;
     char ch;
-    printf("\n\t********LIST OF ALL THE PARTICIPANTS IN THE TECHFEST*******");
+    printf("\n\t********LIST OF ALL THE PARTICIPANTS IN THE TECHFEST*******\n");
     access=fopen("UserList.txt","r");
     while(!feof(access))
     {
@@ -17,7 +10,7 @@ void accessUserList()
         printf("%c",ch);
     }
     fclose(access);
-    printf("\n\tWhere do you want to go?\n\t1.Main Menu\n\t2.Admin Menu\n\t3.Exit");
+    printf("\n\tWhere do you want to go?\n\t1.Main Menu\n\t2.Admin Menu\n\t");
     int choice;
     scanf("%d",&choice);
     switch(choice)
@@ -26,10 +19,7 @@ void accessUserList()
         mainMenu();
         break;
     case 2:
-        adminMenu();
+        adminMenu(1);
         break;
-    case 3:
-        system("cls");
-
     }
 }
