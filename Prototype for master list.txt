@@ -1,4 +1,4 @@
 Name
 College
-password
 ID
+password
