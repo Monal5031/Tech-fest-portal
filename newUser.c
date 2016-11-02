@@ -20,12 +20,22 @@ void newUser()
     scanf("%s",college);
     fprintf(master,"%s\n",college);
     printf("\n\tEnter a password for your account (13 characters maximum):");
-    char pass[13];
+   repeat: char pass[13];
     scanf("%s",pass);
+    int checker=checkPassword(pass);
+    if(checker=1)
+        printf("\n\tPassword Acceptable!");
+    else
+    {
+        printf("\n\tINVALID PASSWORD!!!\n\tEnter different password:");
+        goto repeat;
+    }
+
     srand(time(NULL));
     int x=rand();
     printf("\n\tYour ID is: %d",x);
     fprintf(master,"%d\n",x);
+
     fprintf(master,"%s\n",pass);
     fclose(master);
     printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
