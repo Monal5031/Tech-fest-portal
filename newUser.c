@@ -19,18 +19,18 @@ void newUser()
     char college[30];
     scanf("%s",college);
     fprintf(master,"%s\n",college);
-    printf("\n\tEnter a password for your account (13 characters maximum):");
-   repeat: char pass[13];
+    printf("\n\tEnter a password for your account \n\t(Min.8 Max. 13 characters..Must contain: a special character [@,_,#,$,%,^,&,*] ,a uppercase letter,a lower case letter and a number)\n\tEnter::");
+    int checker=0;
+    char pass[13];
+    while(checker!=1)
+    {
     scanf("%s",pass);
-    int checker=checkPassword(pass);
-    if(checker=1)
+    checker=checkPassword(pass);
+    if(checker==1)
         printf("\n\tPassword Acceptable!");
     else
-    {
         printf("\n\tINVALID PASSWORD!!!\n\tEnter different password:");
-        goto repeat;
     }
-
     srand(time(NULL));
     int x=rand();
     printf("\n\tYour ID is: %d",x);
@@ -68,6 +68,6 @@ void newUser()
     int next;
     scanf("%d",&next);
     if(next==1)
-        mainMenu();
+        userMenu();
     return;
 }
