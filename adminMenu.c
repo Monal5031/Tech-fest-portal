@@ -22,7 +22,7 @@ void adminMenu(int skipper)
                     skip:
                     system("cls");
                     int choice;
-                    printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Access User List(All Events)\n\t5.Log Out");
+                    printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Access User List(All Events)\n\t5.Access Event Wise List\n\t6.Log Out");
                     printf("\n\tEnter your Choice:");
                     scanf("%d",&choice);
                     switch(choice)
@@ -31,15 +31,18 @@ void adminMenu(int skipper)
                         createEvent();
                         break;
                     case 2:
-                       // modifyEvent();
+                       modifyEventInfo();
                         break;
                     case 3:
                         changePassword(pass);
                         break;
                     case 4:
                         accessUserList();
-                        break;
+                    break;
                     case 5:
+                        accessEventWiseList();
+                        break;
+                    case 6:
                         system("cls");
                         printf("Loading");
                         for(j=0;j<=6;j++)
