@@ -30,3 +30,13 @@ Functions Included and their work:
 15. void accessUserList() : Function for admin to access the list of all users.
 
 16.int checkPassword(char []): Function to check the strictness of password.
+
+17.void accessEventWiseList(): Function to access the list of users Event-wise.
+
+18. void modifyEventInfo() : Function to modify Events.
+
+19. void modifyName(char []): Function to modify name of the event.
+
+20. void modifyTime(char []): Functiont to modify time of the event.
+
+21. void modifyInfo(char []): Function to modidy Information of the event.
