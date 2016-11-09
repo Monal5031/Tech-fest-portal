@@ -10,16 +10,9 @@ void accessUserList()
         printf("%c",ch);
     }
     fclose(access);
-    printf("\n\tWhere do you want to go?\n\t1.Main Menu\n\t2.Admin Menu\n\t");
+    printf("\n\tAre you ready to continue?\n\tEnter 1 when you are!");
     int choice;
     scanf("%d",&choice);
-    switch(choice)
-    {
-    case 1:
-        mainMenu();
-        break;
-    case 2:
-        adminMenu(1);
-        break;
-    }
+    if(choice==1)
+        adminMenu();
 }
