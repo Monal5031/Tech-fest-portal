@@ -40,3 +40,11 @@ Functions Included and their work:
 20. void modifyTime(char []): Functiont to modify time of the event.
 
 21. void modifyInfo(char []): Function to modidy Information of the event.
+
+22. int eventCount(int change): Function to maintain count of the events.
+
+23. void oldUser(): Barrier function for oldUserMenu().
+
+24. void oldUserMenu(char []): Function to display menu for old user.
+
+25. void viewSchedule(): Function to view the Event Schedule.
