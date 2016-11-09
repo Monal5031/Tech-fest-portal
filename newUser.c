@@ -12,12 +12,13 @@ void newUser()
     scanf("%s",lastname);
     strcat(name," ");
     strcat(name,lastname);
-    fprintf(master,"%s\n",name);
+    fprintf(master,"\n%s\n",name);
     fprintf(user,"%s\n",name);
     fclose(user);
+    fflush(stdin);
     printf("\n\tEnter your College name : ");
-    char college[30];
-    scanf("%s",college);
+    char college[100];
+    gets(college);
     fprintf(master,"%s\n",college);
     printf("\n\tEnter a password for your account \n\t(Min.8 Max. 13 characters..Must contain: a special character [@,_,#,$,%,^,&,*] ,a uppercase letter,a lower case letter and a number)\n\tEnter::");
     int checker=0;
@@ -37,7 +38,7 @@ void newUser()
     fprintf(master,"%d\n",x);
 
     fprintf(master,"%s\n",pass);
-    fclose(master);
+
     printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
     int go;
     scanf("%d",&go);
@@ -46,11 +47,15 @@ void newUser()
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
     viewList();
-    FILE *event;
+    int eventid[20]={0};
     while(1)
     {
-    printf("\n\tEnter name of event:");
+        FILE *event;
+    printf("\n\tEnter event number and the name of event:");
     char eventname[20];
+    int i;
+    scanf("%d",&i);
+    eventid[i]=1;
     scanf("%s",eventname);
     strcat(eventname,".txt");
     event=fopen(eventname,"a");
@@ -63,6 +68,10 @@ void newUser()
     if(choice==2)
         break;
     }
+    int i;
+    for( i=0;i<sizeof(eventid)/sizeof(eventid[0]);i++)
+            fprintf(master,"%d",eventid[i]);
+    fclose(master);
     printf("\n\n\t*******Events successfully Registered*******");
     printf("\n\tDo you wish to continue?\n\t1.Yes\n\t2.No");
     int next;
