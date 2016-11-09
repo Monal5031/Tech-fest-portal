@@ -27,17 +27,15 @@ void modifyInfo(char event[])
             fscanf(change,"%c",&ch);
             fscanf(change,"%s",check);
             fscanf(change,"%c",&ch);
-            fprintf(change,"%s",newinfo);
+            fprintf(change,"\n%s",newinfo);
             break;
         }
     }
     system("cls");
     printf("\t\t*******EVENT INFORMATION SUCCESSFULLY CHANGED*******\n");
     printf("\tNew Information:%s",newinfo);
-   // fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //adminMenu(1);
-
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
 }
