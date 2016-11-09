@@ -3,6 +3,35 @@
 #include<string.h>
 
 
+
+int eventCount(int change)
+{
+    FILE *count;
+    int counter;
+    if(change==1)
+        {
+
+            count=fopen("EventCount.txt","r");
+            fscanf(count,"%d",&counter);
+            counter++;
+            fclose(count);
+            count=fopen("EventCount.txt","w");
+            fprintf(count,"%d",counter);
+            fclose(count);
+            return counter;
+        }
+    else
+        {
+            count=fopen("EventCount.txt","r");
+            fscanf(count,"%d",&counter);
+            fclose(count);
+            return counter;
+        }
+
+
+}
+
+
 void modifyInfo(char event[])
 {
     FILE *change;
@@ -32,7 +61,7 @@ void modifyInfo(char event[])
             fscanf(change,"%c",&ch);
             fscanf(change,"%s",check);
             fscanf(change,"%c",&ch);
-            fprintf(change,"%s",newinfo);
+            fprintf(change,"\n%s",newinfo);
             break;
         }
     }
@@ -68,7 +97,7 @@ void modifyTime(char event[])
             fscanf(change,"%c",&ch);
             fscanf(change,"%s",check);
             fseek(change,-strlen(check), SEEK_CUR);
-            fprintf(change,"%s",newtime);
+            fprintf(change,"Time:%s",newtime);
             break;
         }
     }
@@ -198,7 +227,7 @@ int checkPassword(char pass[])
         else if(pass[i]>=48&&pass[i]<=57)
             no++;
     }
-    if(special>0&&up>0&&low>0&&no>0)
+    if(special>0&&up>0&&low>0&&no>0&&strlen(pass)>=8)
         return 1;
     else
         return 0;
@@ -217,18 +246,11 @@ void accessUserList()
         printf("%c",ch);
     }
     fclose(access);
-    printf("\n\tWhere do you want to go?\n\t1.Main Menu\n\t2.Admin Menu\n\t");
+    printf("\n\tAre you ready to continue?\n\tEnter 1 when you are!");
     int choice;
     scanf("%d",&choice);
-    switch(choice)
-    {
-    case 1:
-        mainMenu();
-        break;
-    case 2:
+    if(choice==1)
         adminMenu(1);
-        break;
-    }
 }
 
 
@@ -243,6 +265,7 @@ void viewEventInfo()
         fscanf(info,"%c",&ch);
         printf("%c",ch);
     }
+    printf("\b ");
     fclose(info);
     printf("\n\tWhere do you want to go:\n\t1.Main Menu\n\t2.User Menu\n\t3.Exit");
     int choice;
@@ -319,12 +342,13 @@ void newUser()
     scanf("%s",lastname);
     strcat(name," ");
     strcat(name,lastname);
-    fprintf(master,"%s\n",name);
+    fprintf(master,"\n%s\n",name);
     fprintf(user,"%s\n",name);
     fclose(user);
+    fflush(stdin);
     printf("\n\tEnter your College name : ");
-    char college[30];
-    scanf("%s",college);
+    char college[100];
+    gets(college);
     fprintf(master,"%s\n",college);
     printf("\n\tEnter a password for your account \n\t(Min.8 Max. 13 characters..Must contain: a special character [@,_,#,$,%,^,&,*] ,a uppercase letter,a lower case letter and a number)\n\tEnter::");
     int checker=0;
@@ -344,7 +368,7 @@ void newUser()
     fprintf(master,"%d\n",x);
 
     fprintf(master,"%s\n",pass);
-    fclose(master);
+
     printf("\n\tPlease NOTE this ID down for future use\n\tEnter 1 when Ready to Continue");
     int go;
     scanf("%d",&go);
@@ -353,11 +377,15 @@ void newUser()
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
     viewList();
-    FILE *event;
+    int eventid[20]={0};
     while(1)
     {
-    printf("\n\tEnter name of event:");
+        FILE *event;
+    printf("\n\tEnter event number and the name of event:");
     char eventname[20];
+    int i;
+    scanf("%d",&i);
+    eventid[i]=1;
     scanf("%s",eventname);
     strcat(eventname,".txt");
     event=fopen(eventname,"a");
@@ -370,6 +398,10 @@ void newUser()
     if(choice==2)
         break;
     }
+    int i;
+    for( i=0;i<sizeof(eventid)/sizeof(eventid[0]);i++)
+            fprintf(master,"%d",eventid[i]);
+    fclose(master);
     printf("\n\n\t*******Events successfully Registered*******");
     printf("\n\tDo you wish to continue?\n\t1.Yes\n\t2.No");
     int next;
@@ -378,6 +410,7 @@ void newUser()
         userMenu();
     return;
 }
+
 
 
 void userMenu()
@@ -413,11 +446,14 @@ void createEvent()
     char name[30];
     system("cls");
     printf("\n\tPlease Enter the name of event you want to create (Max Size 30): ");
-    scanf("%s",name);
+    fflush(stdin);
+    gets(name);
+    fflush(stdin);
     FILE *create;
     FILE *registerevent;
     registerevent=fopen("EventList.txt","a");
-    fprintf(registerevent,"\n\t-%s",name);
+    int number=eventCount(1);
+    fprintf(registerevent,"\n\t%d. %s",number,name);
     printf("\n\tCongratulations! Event Created \n\tPlease Enter Following Information about the event\n\t");
     char time[10];
     printf("Enter Time(with am or pm without spacing) **(8 size max)**: ");
@@ -432,27 +468,15 @@ void createEvent()
     strcat(name,".txt");
     create=fopen(name,"w");
     fclose(create);
-    printf("\n\tDO You want to continue?");
-    printf("\n\t1.Yes\n\t2.No\n\tEnter:");
-    int tp;
-    scanf("%d",&tp);
-    if(tp==1)
-    {
-        system("cls");
-        printf("\n\tWhere do you want to go?\n");
-        printf("1.Main Menu\n\t2.Admin Menu\n\t");
-        int choice;
-        scanf("%d",&choice);
-        switch(choice)
-        {
-        case 1:
-            mainMenu();
-            break;
-        case 2:
-            adminMenu(1);
-        }
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    adminMenu(1);
     }
-}
 
 
 void changePassword(char pass[])
