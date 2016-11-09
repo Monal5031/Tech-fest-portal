@@ -19,7 +19,7 @@ void modifyTime(char event[])
             fscanf(change,"%c",&ch);
             fscanf(change,"%s",check);
             fseek(change,-strlen(check), SEEK_CUR);
-            fprintf(change,"%s",newtime);
+            fprintf(change,"Time:%s",newtime);
             break;
         }
     }
@@ -27,10 +27,9 @@ void modifyTime(char event[])
     printf("\t\t*******EVENT TIME SUCCESSFULLY CHANGED*******");
     printf("\n\tOld time:%s\n",check);
     printf("\tNew Time:%s",newtime1);
-   // fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //adminMenu(1);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
 
 }
