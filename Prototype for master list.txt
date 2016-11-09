@@ -2,3 +2,4 @@ Name
 College
 ID
 password
+event id (binary 1:registered 0:Not)
