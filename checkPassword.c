@@ -14,7 +14,7 @@ int checkPassword(char pass[])
         else if(pass[i]>=48&&pass[i]<=57)
             no++;
     }
-    if(special>0&&up>0&&low>0&&no>0)
+    if(special>0&&up>0&&low>0&&no>0&&strlen(pass)>=8)
         return 1;
     else
         return 0;
