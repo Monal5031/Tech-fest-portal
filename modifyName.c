@@ -22,10 +22,8 @@ void modifyName(char event[])
     printf("\t\t*******EVENT NAME SUCCESSFULLY CHANGED*******");
     printf("\n\tOld Name:%s\n",event);
     printf("\tNew Name:%s",newname1);
-   // fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //fordelay(1000000);
-    //adminMenu(1);
-
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
+    fordelay(1000000);
 }
