@@ -1,4 +1,3 @@
-
 void accessEventWiseList()
 {
     system("cls");
@@ -11,7 +10,7 @@ void accessEventWiseList()
         scanf("%s",event);
         strcat(event,".txt");
         access=fopen(event,"r");
-        char ch='0';
+        char ch;
         printf("\n\t\t*********List of Registered Users*********\n");
         while(!feof(access))
             {
@@ -22,7 +21,6 @@ void accessEventWiseList()
         printf("\t1.Yes\n\t2.No");
         int choice;
         scanf("%d",&choice);
-        fclose(access);
         if(choice==2)
             break;
     }
