@@ -19,11 +19,11 @@ Functions Included and their work:
 
 10. void newUser(): Function to register any new user to the system.
 
-11. void viewList(): Function to view the list of the events
+11. void viewList(int ,char []): Function to view the list of the events
 
 12. void credits(): Function to display the list of members of project.
 
-13. void viewEventInfo(): Function to display Information of all events
+13. void viewEventInfo(int, char[]): Function to display Information of all events
 
 14. void filleventInfo(char [],char [],char []): Function to fill the information of the events.
 
@@ -47,4 +47,4 @@ Functions Included and their work:
 
 24. void oldUserMenu(char []): Function to display menu for old user.
 
-25. void viewSchedule(): Function to view the Event Schedule.
+25. void schedule(char []): Function to view the Event Schedule.

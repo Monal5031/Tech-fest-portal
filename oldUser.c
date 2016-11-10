@@ -1,17 +1,15 @@
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
 int main()
 {
     oldUser();
     return 0;
 }
-
 void oldUser()
 {
     system("cls");
     printf("\n\n\n\t\tEnter User Id:");
-    char user[10];
+    char user[20];
     loop:
     scanf("%s",user);
     FILE *search;
@@ -20,8 +18,8 @@ void oldUser()
     char pass[15];
     while(!feof(search))
     {
-        char id[10];
-        fscanf("%s",id);
+        char id[20];
+        fscanf(search,"%s",id);
         if(strcmp(id,user)==0)
         {
             char ch;

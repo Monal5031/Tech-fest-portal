@@ -1,63 +1,13 @@
-#include<stdio.h>
-#include<string.h>
-int main()
-{
-    char id[1000000];
-    scanf("%s",id);
-    registerUserEvent(id);
-    return 0;
-}
-
-void viewList()
-{
-    FILE *view;
-    view=fopen("EventList.txt","r");
-    while(!feof(view))
-    {
-        char event[20];
-        fscanf(view,"%s",event);
-        printf("%s\n",event);
-
-    }
-}
-
-
-int eventCount(int change)
-{
-    FILE *count;
-    int counter;
-    if(change==1)
-        {
-
-            count=fopen("EventCount.txt","r");
-            fscanf(count,"%d",&counter);
-            counter++;
-            fclose(count);
-            count=fopen("EventCount.txt","w");
-            fprintf(count,"%d",counter);
-            fclose(count);
-            return 0;
-        }
-    else
-        {
-            count=fopen("EventCount.txt","r");
-            fscanf(count,"%d",&counter);
-            fclose(count);
-            return counter;
-        }
-
-
-}
-
 void registerUserEvent(char id[])
 {
-    //char name[30];
-    //printf("Enter Your First Name and Last Name separated by a space as registered: ");
-    //gets(name);
+    char name[50],lastname[20];
+    printf("Enter Your First Name and Last Name separated by a space as registered: ");
+    scanf("%s%s",name,lastname);
+    strcat(name,lastname);
     FILE *master;
     master=fopen("MasterList.txt","r");
     char eventid[20];
-    char faltu[13];
+    char faltu[20];
     char ch;
     char checkid[1000000];
     int skipper=0;
@@ -83,6 +33,7 @@ void registerUserEvent(char id[])
     FILE *eventfile;
     int i;
     int n=eventCount(0);
+    eventfile=fopen("EventList.txt","r");
     for( i=1;i<n+1;i++)
     {
         if(eventid[i]=='0')
@@ -91,28 +42,24 @@ void registerUserEvent(char id[])
             char ev[2];
             ev[0]=i+48;
             ev[1]='.';
-            strcat(event,ev);
-            char check[20];
-            eventfile=fopen("EventList.txt","r");
-                while(!feof(eventfile))
-                {
-                    fscanf(eventfile,"%s",check);
-                    if(strcmp(check,ev)==0)
-                        {
-                        fscanf(eventfile,"%s",event);
-                        printf("%d. %s",i,event);
-                        break;
-                        }
-                }
+            while(!feof(eventfile))
+            {
+                char check[20];
+                fscanf(eventfile,"%s",check);
+                if(check[0]==ev[0]&&check[1]==ev[1])
+                    {
+                    fscanf(eventfile,"%s",event);
+                    strcat(check,event);
+                    printf("%s\n",check);
+                    break;
+                    }
+            }
         }
-        printf("SUCCESSFULL");
+        rewind(eventfile);
     }
-     fclose(eventfile);
-    printf("SUCCESS");
-/*
+fclose(eventfile);
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
-    viewList();
     while(1)
     {
         FILE *eventfile1;
@@ -133,19 +80,30 @@ void registerUserEvent(char id[])
     if(choice==2)
         break;
     }
+    //printf("%s",eventid);
+    master=fopen("MasterList.txt","r");
+    FILE *copy;
+    copy=fopen("COPY.txt","w");
 
-    master=fopen("MasterList.txt","r+");
     while(!feof(master))
     {
-        fscanf(master,"%s",checkid);
-        if(strcmp(checkid,id)==0)
+        fgets(checkid,100,master);
+        //fscanf(master,"%s",checkid);
+        if(strncmp(checkid,id,strlen(id))==0)
         {
-            fscanf(master,"%c",&ch);
-            fscanf(master,"%s",faltu);
-            fscanf(master,"%c",&ch);
-            fprintf(master,"%s",eventid);
-            break;
+            fprintf(copy,"%s",checkid);
+            fgets(checkid,100,master);
+            fprintf(copy,"%s",checkid);
+            printf("%s",eventid);
+            fprintf(copy,"%s\n",eventid);
+            fgets(checkid,100,master);
+
         }
+        else
+        fprintf(copy,"%s",checkid);
     }
-    fclose(master);*/
+    fclose(master);
+    fclose(copy);
+    remove("MasterList.txt");
+    rename("COPY.txt","MasterList.txt");
 }

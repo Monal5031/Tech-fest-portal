@@ -3,6 +3,317 @@
 #include<string.h>
 
 
+void schedule(char id[],int skip)
+{
+    system("cls");
+    FILE *fp;
+    fp=fopen("schedule.txt","r");
+    char ch;
+    printf("\t\t\t\t*****Schedule*****\n\n");
+    while(!feof(fp))
+    {
+       fscanf(fp,"%c",&ch);
+        printf("%c",ch);
+    }
+    printf("\b ");
+fclose(fp);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+if(skip==1)
+    OldUserMenu(id);
+if(skip==0)
+    userMenu();
+}
+
+
+
+void viewRegisteredList(char id[])
+{
+    system("cls");
+    FILE *master;
+    master=fopen("MasterList.txt","r");
+    char eventid[20];
+    char faltu[20];
+    char ch;
+    char checkid[1000000];
+    int skipper=0;
+    while(!feof(master))
+    {
+        fscanf(master,"%s",checkid);
+        if(strcmp(checkid,id)==0)
+        {
+            fscanf(master,"%c",&ch);
+            fscanf(master,"%s",faltu);
+            fscanf(master,"%c",&ch);
+            fscanf(master,"%s",eventid);
+            skipper=1;
+            break;
+        }
+    }
+    if(skipper==0)
+    {
+        printf("Wrong ID! Enter Valid one!");
+        return;
+    }
+    fclose(master);
+    FILE *eventfile;
+    int i;
+    int n=eventCount(0);
+    eventfile=fopen("EventList.txt","r");
+    printf("\t\t*******REGISTERED EVENTS********\n");
+    for( i=1;i<n+1;i++)
+    {
+        if(eventid[i]=='1')
+        {
+            char event[20];
+            char ev[2];
+            ev[0]=i+48;
+            ev[1]='.';
+            while(!feof(eventfile))
+            {
+                char check[20];
+                fscanf(eventfile,"%s",check);
+                if(check[0]==ev[0]&&check[1]==ev[1])
+                    {
+                    fscanf(eventfile,"%s",event);
+                    strcat(check,event);
+                    printf("%s\n",check);
+                    break;
+                    }
+            }
+        }
+        rewind(eventfile);
+    }
+    fclose(eventfile);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    OldUserMenu(id);
+}
+
+
+void registerUserEvent(char id[])
+{
+    system("cls");
+    printf("\t\t********REGISTRATION OF EVENTS**********\n");
+    char name[50],lastname[20];
+    printf("Enter Your First Name and Last Name separated by a space as registered: ");
+    scanf("%s%s",name,lastname);
+    strcat(name,lastname);
+    FILE *master;
+    master=fopen("MasterList.txt","r");
+    char eventid[20];
+    char faltu[20];
+    char ch;
+    char checkid[1000000];
+    int skipper=0;
+    while(!feof(master))
+    {
+        fscanf(master,"%s",checkid);
+        if(strcmp(checkid,id)==0)
+        {
+            fscanf(master,"%c",&ch);
+            fscanf(master,"%s",faltu);
+            fscanf(master,"%c",&ch);
+            fscanf(master,"%s",eventid);
+            skipper=1;
+            break;
+        }
+    }
+    if(skipper==0)
+    {
+        printf("Wrong ID! Enter Valid one!");
+        return;
+    }
+    fclose(master);
+    FILE *eventfile;
+    int i;
+    int n=eventCount(0);
+    eventfile=fopen("EventList.txt","r");
+    for( i=1;i<n+1;i++)
+    {
+        if(eventid[i]=='0')
+        {
+            char event[20];
+            char ev[2];
+            ev[0]=i+48;
+            ev[1]='.';
+            while(!feof(eventfile))
+            {
+                char check[20];
+                fscanf(eventfile,"%s",check);
+                if(check[0]==ev[0]&&check[1]==ev[1])
+                    {
+                    fscanf(eventfile,"%s",event);
+                    strcat(check,event);
+                    printf("%s\n",check);
+                    break;
+                    }
+            }
+        }
+        rewind(eventfile);
+    }
+fclose(eventfile);
+    printf("\n\tEnter which event you want to register for one by one:\n\t");
+    printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
+    while(1)
+    {
+        FILE *eventfile1;
+    printf("\n\tEnter event number and the name of event (separated by space):");
+    char eventname[20];
+    int i;
+    scanf("%d",&i);
+    eventid[i]='1';
+    scanf("%s",eventname);
+    strcat(eventname,".txt");
+    eventfile1=fopen(eventname,"a");
+    fprintf(eventfile1,"%s\n",name);
+    printf("\n\n\tDo you wish to register for more events?\n\t1.Yes 2.No\n\t");
+    printf("Enter: ");
+    int choice;
+    scanf("%d",&choice);
+    fclose(eventfile1);
+    if(choice==2)
+        break;
+    }
+    //printf("%s",eventid);
+    master=fopen("MasterList.txt","r");
+    FILE *copy;
+    copy=fopen("COPY.txt","w");
+
+    while(!feof(master))
+    {
+        fgets(checkid,100,master);
+        //fscanf(master,"%s",checkid);
+        if(strncmp(checkid,id,strlen(id))==0)
+        {
+            fprintf(copy,"%s",checkid);
+            fgets(checkid,100,master);
+            fprintf(copy,"%s",checkid);
+            fprintf(copy,"%s\n",eventid);
+            fgets(checkid,100,master);
+
+        }
+        else
+        fprintf(copy,"%s",checkid);
+    }
+    fclose(master);
+    fclose(copy);
+    remove("MasterList.txt");
+    rename("COPY.txt","MasterList.txt");
+    system("cls");
+    printf("\t\t******EVENTS SUCCESSFULLY REGISTERED********");
+    OldUserMenu();
+}
+
+void OldUserMenu(char id[])
+{
+    system("cls");
+    printf("\t***********LOGGED IN*******");
+    printf("\n\n\t1.Register for new Events\n\t2.List of Events Registered\n\t3.Display Event Information\n\t");
+    printf("4.View Event List\n\t5.Event Schedule\n\t6.LogOut\n\tEnter:");
+    int choice;
+    scanf("%d",&choice);
+    switch(choice)
+    {
+    case 1:
+        registerUserEvent(id);
+        break;
+    case 2:
+        viewRegisteredList(id);
+        break;
+    case 3:
+        viewEventInfo(1,id);
+        break;
+    case 4:
+        viewList(1,id);
+        break;
+    case 5:
+        schedule(id,1);
+        break;
+    case 6:
+        system("cls");
+        int i;
+        printf("Loading");
+        for(i=0;i<=6;i++)
+        {
+            printf(".");
+            fordelay(100000000);
+            fordelay(100000000);
+            fordelay(100000000);
+        }
+        mainMenu();
+        break;
+    }
+}
+
+
+
+void oldUser()
+{
+    system("cls");
+    printf("\n\n\n\t\tEnter User Id:");
+    char user[10];
+    loop:
+    scanf("%s",user);
+    FILE *search;
+    int finder=0;
+    search=fopen("MasterList.txt","r");
+    char pass[15];
+    while(!feof(search))
+    {
+        char id[10];
+        fscanf(search,"%s",id);
+        if(strcmp(id,user)==0)
+        {
+            char ch;
+            fscanf(search,"%c",&ch);
+            fscanf(search,"%s",pass);
+            finder=1;
+            break;
+        }
+    }
+    if(finder==0)
+    {
+        printf("\n\tWrong ID! Please Enter a correct ID");
+        goto loop;
+    }
+    loop1:
+    system("cls");
+    printf("\n\t\tEnter Password:");
+    char userpass[15];
+    scanf("%s",userpass);
+    printf("Verifying");
+    int i;
+    for(i=0;i<6;i++)
+    {
+        printf(".");
+        fordelay(100000);
+    }
+    if(strcmp(userpass,pass)!=0)
+    {
+        printf("\n\tWrong Password! Enter Correct Password");
+        goto loop1;
+    }
+   OldUserMenu(user);
+}
+
 
 int eventCount(int change)
 {
@@ -255,11 +566,13 @@ void accessUserList()
 
 
 
-void viewEventInfo()
+void viewEventInfo(int skipper,char id[])
 {
     FILE *info;
     info=fopen("EventInfo.txt","r");
     char ch;
+    system("cls");
+    printf("\t\t************EVENT INFORMATION***********\n");
     while(!feof(info))
     {
         fscanf(info,"%c",&ch);
@@ -267,6 +580,15 @@ void viewEventInfo()
     }
     printf("\b ");
     fclose(info);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    if(skipper==1)
+        OldUserMenu(id);
     printf("\n\tWhere do you want to go:\n\t1.Main Menu\n\t2.User Menu\n\t3.Exit");
     int choice;
     scanf("%d",&choice);
@@ -314,8 +636,12 @@ void credits()
 }
 
 
-void viewList()
+void viewList(int skipper,char id[])
 {
+
+    if(skipper==1)
+        system("cls");
+    printf("\t\t***********LIST OF ALL EVENTS***********\n");
     FILE *view;
     view=fopen("EventList.txt","r");
     while(!feof(view))
@@ -325,6 +651,16 @@ void viewList()
         printf("%s\n",event);
 
     }
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    if(skipper==1)
+        OldUserMenu(id);
 }
 
 
@@ -376,7 +712,7 @@ void newUser()
     printf("\t********REGISTRATION SUCCESSFULL*******");
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
-    viewList();
+    viewList(0,"");
     int eventid[20]={0};
     while(1)
     {
@@ -416,7 +752,7 @@ void newUser()
 void userMenu()
 {
     system("cls");
-    printf("\n\t1.New user\n\t2.Old User\n\t3.Event Information\n\t4.Main Menu");
+    printf("\n\t1.New user\n\t2.Old User\n\t3.Event Information\n\t4.Event Schedule\n\t5.Main Menu");
     int choice;
     printf("\n\tEnter your choice:");
     scanf("%d",&choice);
@@ -428,13 +764,16 @@ void userMenu()
         break;
     case 2:
         system("cls");
-        //oldUser();
+        oldUser();
         break;
     case 3:
         system("cls");
-        viewEventInfo();
+        viewEventInfo(0,"");
         break;
     case 4:
+        schedule("",0);
+        break;
+    case 5:
         system("cls");
         mainMenu();
     }
