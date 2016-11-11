@@ -3,6 +3,22 @@
 #include<string.h>
 
 
+ long int assignEventID()
+ {
+
+ long int count;
+  FILE *fp;
+         fp1=fopen("eventid.txt","r");
+         fscanf(fp,"%ld",&count);
+        fclose(fp);
+        count++;
+         fp=fopen("eventid.txt","w");
+         fprintf(fp,"%ld\n",count);
+         fclose(fp);
+ return count;
+ }
+
+
 int checkEventName(char event[])
 {
     FILE *ev;
@@ -770,8 +786,7 @@ void newUser()
     else
         printf("\n\tINVALID PASSWORD!!!\n\tEnter different password:");
     }
-    srand(time(NULL));
-    int x=rand();
+    int x=assignEventID();
     printf("\n\tYour ID is: %d",x);
     fprintf(master,"%d\n",x);
 
