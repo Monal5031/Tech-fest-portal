@@ -48,3 +48,7 @@ Functions Included and their work:
 24. void oldUserMenu(char []): Function to display menu for old user.
 
 25. void schedule(char []): Function to view the Event Schedule.
+
+26. int checkEventNumber(int ): Function to check if user has given valid event number.
+
+27. int checkEventName(char []): Function to check if user has given valid event name.

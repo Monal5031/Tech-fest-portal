@@ -1,5 +1,6 @@
 void registerUserEvent(char id[])
 {
+    printf("\n\t***********EVENT REGISTRATION*************");
     char name[50],lastname[20];
     printf("Enter Your First Name and Last Name separated by a space as registered: ");
     scanf("%s%s",name,lastname);
@@ -34,6 +35,8 @@ void registerUserEvent(char id[])
     int i;
     int n=eventCount(0);
     eventfile=fopen("EventList.txt","r");
+    FILE *eventcheck;
+    eventcheck=fopen("TEMPE.txt","w");
     for( i=1;i<n+1;i++)
     {
         if(eventid[i]=='0')
@@ -51,24 +54,54 @@ void registerUserEvent(char id[])
                     fscanf(eventfile,"%s",event);
                     strcat(check,event);
                     printf("%s\n",check);
+                    fprintf(eventcheck,"%s\n",check);
                     break;
                     }
             }
         }
         rewind(eventfile);
     }
-fclose(eventfile);
+    fclose(eventfile);
+    fclose(eventcheck);
+    FILE *numcheck;
+    numcheck=fopen("TEMPN.txt","w");
+    int j;
+    for(j=0;j<=n;j++)
+    {
+        if(eventid[j]=='0')
+        {
+            fprintf("%d ",numcheck);
+        }
+    }
+    fclose(numcheck);
+    eventfile=fopen("EventList.txt","r");
+    eventcheck=fopen("TEMPE.txt","r");
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
     while(1)
     {
+        rewind(eventcheck);
+        rewind(numcheck);
+        rewind(eventfile);
         FILE *eventfile1;
     printf("\n\tEnter event number and the name of event (separated by space):");
     char eventname[20];
     int i;
     scanf("%d",&i);
-    eventid[i]='1';
+    if(checkEventNumber(i))
+    {
+        system("cls");
+        printf("\n\tEvent Number Not Valid!!\n\tPlease Enter a Valid EVENT number");
+        continue;
+    }
     scanf("%s",eventname);
+    if(checkEventName(eventname))
+    {
+        system("cls");
+        printf("\n\tEvent Name Not Valid!!\n\tPlease Enter a Valid EVENT name");
+        continue;
+    }
+    eventid[i]='1';
     strcat(eventname,".txt");
     eventfile1=fopen(eventname,"a");
     fprintf(eventfile1,"%s\n",name);
@@ -106,4 +139,6 @@ fclose(eventfile);
     fclose(copy);
     remove("MasterList.txt");
     rename("COPY.txt","MasterList.txt");
+    printf("\t\t******EVENTS SUCCESSFULLY REGISTERED********");
+    OldUserMenu(id);
 }

@@ -3,6 +3,37 @@
 #include<string.h>
 
 
+int checkEventName(char event[])
+{
+    FILE *ev;
+    ev=fopen("TEMPE.txt","r");
+    char check[30];
+    while(!feof(ev))
+    {
+        fscanf(ev,"%s",check);
+        if(strcmp(check,event)==0)
+            return 1;
+    }
+    return 0;
+}
+
+
+int checkEventNumber(int i)
+{
+    FILE *check;
+    int checkn;
+    check=fopen("TEMPN.txt","r");
+    while(!feof(check))
+    {
+        fscanf(check,"%d",&checkn);
+        if(checkn==i)
+            return 1;
+
+    }
+    return 0;
+}
+
+
 void schedule(char id[],int skip)
 {
     system("cls");
@@ -110,8 +141,7 @@ void viewRegisteredList(char id[])
 
 void registerUserEvent(char id[])
 {
-    system("cls");
-    printf("\t\t********REGISTRATION OF EVENTS**********\n");
+    printf("\n\t***********EVENT REGISTRATION*************\n");
     char name[50],lastname[20];
     printf("Enter Your First Name and Last Name separated by a space as registered: ");
     scanf("%s%s",name,lastname);
@@ -146,6 +176,8 @@ void registerUserEvent(char id[])
     int i;
     int n=eventCount(0);
     eventfile=fopen("EventList.txt","r");
+    FILE *eventcheck;
+    eventcheck=fopen("TEMPE.txt","w");
     for( i=1;i<n+1;i++)
     {
         if(eventid[i]=='0')
@@ -163,24 +195,53 @@ void registerUserEvent(char id[])
                     fscanf(eventfile,"%s",event);
                     strcat(check,event);
                     printf("%s\n",check);
+                    fprintf(eventcheck,"%s\n",event);
                     break;
                     }
             }
         }
         rewind(eventfile);
     }
-fclose(eventfile);
+    fclose(eventfile);
+    fclose(eventcheck);
+    FILE *numcheck;
+    numcheck=fopen("TEMPN.txt","w");
+    int j;
+    for(j=0;j<=n;j++)
+    {
+        if(eventid[j]=='0')
+        {
+            fprintf(numcheck,"%d\n",j);
+        }
+    }
+    fclose(numcheck);
+    eventfile=fopen("EventList.txt","r");
+    eventcheck=fopen("TEMPE.txt","r");
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
     while(1)
     {
+        rewind(eventcheck);
+        rewind(numcheck);
+        rewind(eventfile);
         FILE *eventfile1;
+        fflush(stdin);
     printf("\n\tEnter event number and the name of event (separated by space):");
-    char eventname[20];
+    char eventname[30];
     int i;
     scanf("%d",&i);
-    eventid[i]='1';
     scanf("%s",eventname);
+    if(checkEventNumber(i))
+    {
+        printf("\n\tEvent Number Not Valid!!\n\tPlease Enter a Valid EVENT number");
+        continue;
+    }
+    if(checkEventName(eventname))
+    {
+        printf("\n\tEvent Name Not Valid!!\n\tPlease Enter a Valid EVENT name");
+        continue;
+    }
+    eventid[i]='1';
     strcat(eventname,".txt");
     eventfile1=fopen(eventname,"a");
     fprintf(eventfile1,"%s\n",name);
@@ -206,6 +267,7 @@ fclose(eventfile);
             fprintf(copy,"%s",checkid);
             fgets(checkid,100,master);
             fprintf(copy,"%s",checkid);
+            printf("%s",eventid);
             fprintf(copy,"%s\n",eventid);
             fgets(checkid,100,master);
 
@@ -215,12 +277,17 @@ fclose(eventfile);
     }
     fclose(master);
     fclose(copy);
+    fclose(numcheck);
+    fclose(eventcheck);
     remove("MasterList.txt");
+    remove("TEMPE.txt");
+    remove("TEMPN.txt");
     rename("COPY.txt","MasterList.txt");
-    system("cls");
     printf("\t\t******EVENTS SUCCESSFULLY REGISTERED********");
-    OldUserMenu();
+    OldUserMenu(id);
 }
+
+
 
 void OldUserMenu(char id[])
 {
@@ -234,18 +301,23 @@ void OldUserMenu(char id[])
     {
     case 1:
         registerUserEvent(id);
+        system("cls");
         break;
     case 2:
         viewRegisteredList(id);
+        system("cls");
         break;
     case 3:
         viewEventInfo(1,id);
+        system("cls");
         break;
     case 4:
         viewList(1,id);
+        system("cls");
         break;
     case 5:
         schedule(id,1);
+        system("cls");
         break;
     case 6:
         system("cls");
