@@ -52,3 +52,9 @@ Functions Included and their work:
 26. int checkEventNumber(int ): Function to check if user has given valid event number.
 
 27. int checkEventName(char []): Function to check if user has given valid event name.
+
+28.registerUserEvent(char []): Function to register events for old user.
+
+29.viewRegisteredList(char []):Function to view registered events.
+
+30.assignEventID(): Function to assign event id to an user.
