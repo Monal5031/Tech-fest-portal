@@ -211,7 +211,7 @@ void registerUserEvent(char id[])
                     fscanf(eventfile,"%s",event);
                     strcat(check,event);
                     printf("%s\n",check);
-                    //fprintf(eventcheck,"%s\n",event);
+                    fprintf(eventcheck,"%s\n",event);
                     break;
                     }
             }
@@ -342,9 +342,9 @@ void OldUserMenu(char id[])
         for(i=0;i<=6;i++)
         {
             printf(".");
-            fordelay(100000000);
-            fordelay(100000000);
-            fordelay(100000000);
+            fordelay(1000000);
+            fordelay(1000000);
+            fordelay(1000000);
         }
         mainMenu();
         break;
