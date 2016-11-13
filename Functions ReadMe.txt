@@ -53,8 +53,12 @@ Functions Included and their work:
 
 27. int checkEventName(char []): Function to check if user has given valid event name.
 
-28.registerUserEvent(char []): Function to register events for old user.
+28.void registerUserEvent(char []): Function to register events for old user.
 
-29.viewRegisteredList(char []):Function to view registered events.
+29.void viewRegisteredList(char []):Function to view registered events.
 
-30.assignEventID(): Function to assign event id to an user.
+30.long int assignEventID(): Function to assign event id to an user.
+
+31.void enterPass(): Function to enter pass using masking
+
+32. void changeUserPass(char []): Function to change user passwor.
