@@ -2,13 +2,12 @@
 #include<stdlib.h>
 #include<string.h>
 
-
  long int assignEventID()
  {
 
  long int count;
   FILE *fp;
-         fp1=fopen("eventid.txt","r");
+         fp=fopen("eventid.txt","r");
          fscanf(fp,"%ld",&count);
         fclose(fp);
         count++;
@@ -28,9 +27,9 @@ int checkEventName(char event[])
     {
         fscanf(ev,"%s",check);
         if(strcmp(check,event)==0)
-            return 1;
+            return 0;
     }
-    return 0;
+    return 1;
 }
 
 
@@ -43,10 +42,10 @@ int checkEventNumber(int i)
     {
         fscanf(check,"%d",&checkn);
         if(checkn==i)
-            return 1;
+            return 0;
 
     }
-    return 0;
+    return 1;
 }
 
 
@@ -191,6 +190,7 @@ void registerUserEvent(char id[])
     FILE *eventfile;
     int i;
     int n=eventCount(0);
+    //printf("%d",n);
     eventfile=fopen("EventList.txt","r");
     FILE *eventcheck;
     eventcheck=fopen("TEMPE.txt","w");
@@ -211,7 +211,7 @@ void registerUserEvent(char id[])
                     fscanf(eventfile,"%s",event);
                     strcat(check,event);
                     printf("%s\n",check);
-                    fprintf(eventcheck,"%s\n",event);
+                    //fprintf(eventcheck,"%s\n",event);
                     break;
                     }
             }
@@ -294,7 +294,7 @@ void registerUserEvent(char id[])
     fclose(master);
     fclose(copy);
     fclose(numcheck);
-    fclose(eventcheck);
+    //fclose(eventcheck);
     remove("MasterList.txt");
     remove("TEMPE.txt");
     remove("TEMPN.txt");

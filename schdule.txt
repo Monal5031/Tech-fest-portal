@@ -1,7 +1,0 @@
-	Time			Event			Venue
-    	
-	5:00pm-6:00pm		LanGaming		Computer Lab
-	6:00pm-6:30pm		Coding			Computer Lab
-	6:30pm-7:30pm		Hackathon		Computer Lab
-	7:30pm-8:30pm		webeinstien		Computer Lab
-	8:30pm-9:30pm	        Webpreneurship 		Computer Lab
