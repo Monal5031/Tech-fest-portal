@@ -1,3 +1,5 @@
+#include<string.h>
+#include<stdio.h>
 void encrypt(char pass[])
 {
     int i;

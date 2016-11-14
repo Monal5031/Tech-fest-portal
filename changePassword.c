@@ -1,3 +1,4 @@
+#include<string.h>
 void changePassword(char pass[])
 {
     system("cls");
@@ -5,8 +6,22 @@ void changePassword(char pass[])
     printf("");
     char checkpass[13];
     printf("\tEnter Your Old Password:");
+    
     scanf("%s",checkpass);
-    if(strcmp(checkpass,pass)!=0)
+    int length;
+    int flag=0;
+    printf("\n%s\n",pass);
+    length=strlen(checkpass);
+    int i;
+    for(i=0;i<length;i++)
+      {
+           if(checkpass[i]!=pass[i])
+              {
+                   flag=1;
+                   break;
+              }
+      }
+    if(flag!=0)
     {
         printf("WRONG PASSWORD!! ENTER AGAIN:\n\t");
         goto up;
