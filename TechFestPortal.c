@@ -1182,9 +1182,9 @@ void adminMenu(int skipper)
                       adminpass1=fopen("AdminPassword.txt","r");
 
                       char pass2[13];
-                      fscanf(adminpass,"%s",pass2);
+                      fscanf(adminpass1,"%s",pass2);
                       decrypt(pass2);
-                      fclose(adminpass);
+                      fclose(adminpass1);
                     system("cls");
                     int choice;
                     printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Access User List(All Events)\n\t5.Access Event Wise List\n\t6.Log Out");

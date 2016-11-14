@@ -1,15 +1,8 @@
-#include<stdio.h>
-#include<string.h>
-int main()
-{
-    oldUser();
-    return 0;
-}
 void oldUser()
 {
     system("cls");
     printf("\n\n\n\t\tEnter User Id:");
-    char user[20];
+    char user[10];
     loop:
     scanf("%s",user);
     FILE *search;
@@ -18,7 +11,7 @@ void oldUser()
     char pass[15];
     while(!feof(search))
     {
-        char id[20];
+        char id[10];
         fscanf(search,"%s",id);
         if(strcmp(id,user)==0)
         {
@@ -36,9 +29,8 @@ void oldUser()
     }
     loop1:
     system("cls");
-    printf("\n\t\tEnter Password:");
-    char userpass[15];
-    scanf("%s",userpass);
+    char userpass[13];
+    enterPass(userpass);
     printf("Verifying");
     int i;
     for(i=0;i<6;i++)
@@ -48,8 +40,12 @@ void oldUser()
     }
     if(strcmp(userpass,pass)!=0)
     {
-        printf("\n\tWrong Password! Enter Correct Password");
+        printf("\n\tWrong Password! Enter Correct Password\n\tEnter:");
         goto loop1;
     }
-   OldUserMenu(user);
+   FILE *passf;
+    passf=fopen("CurrentPassword.txt","w");
+    fprintf(passf,"%s",pass);
+    fclose(passf);
+    OldUserMenu(user);
 }

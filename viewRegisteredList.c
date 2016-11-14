@@ -1,42 +1,7 @@
-#include<stdio.h>
-#include<string.h>
-int main()
-{
-    char id[10];
-    scanf("%s",id);
-    viewRegisteredList(id);
-    return 0;
-}
-int eventCount(int change)
-{
-    FILE *count;
-    int counter;
-    if(change==1)
-        {
-
-            count=fopen("EventCount.txt","r");
-            fscanf(count,"%d",&counter);
-            counter++;
-            fclose(count);
-            count=fopen("EventCount.txt","w");
-            fprintf(count,"%d",counter);
-            fclose(count);
-            return counter;
-        }
-    else
-        {
-            count=fopen("EventCount.txt","r");
-            fscanf(count,"%d",&counter);
-            fclose(count);
-            return counter;
-        }
-
-
-}
-
 void viewRegisteredList(char id[])
 {
-FILE *master;
+    system("cls");
+    FILE *master;
     master=fopen("MasterList.txt","r");
     char eventid[20];
     char faltu[20];
@@ -66,6 +31,7 @@ FILE *master;
     int i;
     int n=eventCount(0);
     eventfile=fopen("EventList.txt","r");
+    printf("\t\t*******REGISTERED EVENTS********\n");
     for( i=1;i<n+1;i++)
     {
         if(eventid[i]=='1')
@@ -89,4 +55,17 @@ FILE *master;
         }
         rewind(eventfile);
     }
+    fclose(eventfile);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    fordelay(100000000);
+    OldUserMenu(id);
 }

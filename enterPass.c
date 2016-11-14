@@ -1,8 +1,6 @@
-#include<stdio.h>
-
-void enterPass(char password[])
+void enterPass(char pass[])
  {
-char password[13],ch;
+char ch;
 int i=0,j;
 
 puts("Enter password : ");
@@ -28,13 +26,12 @@ i = 0;
      printf("*");
      continue;
   }
-  password[i] = ch;
+  pass[i] = ch;
   i++;
   ch = '*';
   printf("%c",ch);
 
 }
 
-password[i] = '\0';
+pass[i] = '\0';
 }
-

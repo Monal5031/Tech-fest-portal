@@ -1,6 +1,6 @@
 void registerUserEvent(char id[])
 {
-    printf("\n\t***********EVENT REGISTRATION*************");
+    printf("\n\t***********EVENT REGISTRATION*************\n");
     char name[50],lastname[20];
     printf("Enter Your First Name and Last Name separated by a space as registered: ");
     scanf("%s%s",name,lastname);
@@ -34,6 +34,7 @@ void registerUserEvent(char id[])
     FILE *eventfile;
     int i;
     int n=eventCount(0);
+    //printf("%d",n);
     eventfile=fopen("EventList.txt","r");
     FILE *eventcheck;
     eventcheck=fopen("TEMPE.txt","w");
@@ -54,7 +55,7 @@ void registerUserEvent(char id[])
                     fscanf(eventfile,"%s",event);
                     strcat(check,event);
                     printf("%s\n",check);
-                    fprintf(eventcheck,"%s\n",check);
+                    fprintf(eventcheck,"%s\n",event);
                     break;
                     }
             }
@@ -70,7 +71,7 @@ void registerUserEvent(char id[])
     {
         if(eventid[j]=='0')
         {
-            fprintf("%d ",numcheck);
+            fprintf(numcheck,"%d\n",j);
         }
     }
     fclose(numcheck);
@@ -84,20 +85,19 @@ void registerUserEvent(char id[])
         rewind(numcheck);
         rewind(eventfile);
         FILE *eventfile1;
+        fflush(stdin);
     printf("\n\tEnter event number and the name of event (separated by space):");
-    char eventname[20];
+    char eventname[30];
     int i;
     scanf("%d",&i);
+    scanf("%s",eventname);
     if(checkEventNumber(i))
     {
-        system("cls");
         printf("\n\tEvent Number Not Valid!!\n\tPlease Enter a Valid EVENT number");
         continue;
     }
-    scanf("%s",eventname);
     if(checkEventName(eventname))
     {
-        system("cls");
         printf("\n\tEvent Name Not Valid!!\n\tPlease Enter a Valid EVENT name");
         continue;
     }
@@ -137,7 +137,11 @@ void registerUserEvent(char id[])
     }
     fclose(master);
     fclose(copy);
+    fclose(numcheck);
+    fclose(eventcheck);
     remove("MasterList.txt");
+    remove("TEMPE.txt");
+    remove("TEMPN.txt");
     rename("COPY.txt","MasterList.txt");
     printf("\t\t******EVENTS SUCCESSFULLY REGISTERED********");
     OldUserMenu(id);

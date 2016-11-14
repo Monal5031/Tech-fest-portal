@@ -32,8 +32,7 @@ void newUser()
     else
         printf("\n\tINVALID PASSWORD!!!\n\tEnter different password:");
     }
-    srand(time(NULL));
-    int x=rand();
+    int x=assignEventID();
     printf("\n\tYour ID is: %d",x);
     fprintf(master,"%d\n",x);
 
@@ -46,7 +45,7 @@ void newUser()
     printf("\t********REGISTRATION SUCCESSFULL*******");
     printf("\n\tEnter which event you want to register for one by one:\n\t");
     printf("\n\n\t*****************WARNING: ENTER THE NAME OF EVENT AS IT IS!**************************\n");
-    viewList();
+    viewList(0,"");
     int eventid[20]={0};
     while(1)
     {

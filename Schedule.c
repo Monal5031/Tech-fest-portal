@@ -1,13 +1,6 @@
-#include<stdio.h>
-int main()
+void schedule(char id[],int skip)
 {
-    char id[10]="11193";
-    schedule(id);
-    return 0;
-}
-void schedule(char id[])
-{
-
+    system("cls");
     FILE *fp;
     fp=fopen("schedule.txt","r");
     char ch;
@@ -19,4 +12,18 @@ void schedule(char id[])
     }
     printf("\b ");
 fclose(fp);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+fordelay(100000000);
+if(skip==1)
+    OldUserMenu(id);
+if(skip==0)
+    userMenu();
 }

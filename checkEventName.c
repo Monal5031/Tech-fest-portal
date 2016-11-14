@@ -7,7 +7,7 @@ int checkEventName(char event[])
     {
         fscanf(ev,"%s",check);
         if(strcmp(check,event)==0)
-            return 1;
+            return 0;
     }
-    return 0;
+    return 1;
 }

@@ -1,18 +1,18 @@
 int authenticate(int caser,char pass[])
     {
+
         int passer=0,count=4;
         char userpass[13];
     switch(caser)
     {
      case 1:
-            printf("\n\tEnter Admin Password:");
-            scanf("%s",userpass);
+            enterPass(userpass);
             passer=strcmp(pass,userpass);
             while(passer!=0&&count>=0)
             {
                 system("cls");
                 printf("\n\tWrong Password\n\tEnter again:");
-                scanf("%s",userpass);
+                enterPass(userpass);
                 passer=strcmp(pass,userpass);
                 count--;
             }
@@ -25,13 +25,13 @@ int authenticate(int caser,char pass[])
             break;
     case 2:
             printf("\n\tEnter User Password");
-            scanf("%s",userpass);
+            enterPass(userpass);
             passer=strcmp(pass,userpass);
             while(passer!=0&&count>=0)
             {
                 system("cls");
                 printf("\n\tWrong Password\n\tEnter again:");
-                scanf("%s",userpass);
+                enterPass(userpass);
                 passer=strcmp(pass,userpass);
                 count--;
             }

@@ -33,7 +33,7 @@ void changeUserPass(char user[],char pass[])
         printf("PASSWORDS DO NOT MATCH ENTER NEW AGAIN");
         goto upper;
     }
-    encrypt(pass);
+    //encrypt(pass);
     fprintf(password,"%s",pass);
     fclose(password);
     system("cls");
@@ -45,23 +45,27 @@ void changeUserPass(char user[],char pass[])
     fordelay(100000000);
     FILE *master,*copy;
     master=fopen("MasterList.txt","r");
-    FILE *copy;
-    copy=fopen("COPY.txt","w");
-
+    copy=fopen("COPY1.txt","w");
+    char checkid[100];
     while(!feof(master))
     {
         fgets(checkid,100,master);
         //fscanf(master,"%s",checkid);
-        if(strncmp(checkid,id,strlen(id))==0)
+        if(strncmp(checkid,user,strlen(user))==0)
         {
             fprintf(copy,"%s",checkid);
             fprintf(copy,"%s\n",pass);
+            fgets(checkid,100,master);
         }
         else
         fprintf(copy,"%s",checkid);
     }
+    fclose(password);
     fclose(master);
     fclose(copy);
-    remove("MasterList.txt");
+    fordelay(10000000000000);
+    int rem=remove("MasterList.txt");
+    printf("\n\n\t\t%d",rem);
+    rename("COPY1.txt","MasterList.txt");
     OldUserMenu(user);
 }

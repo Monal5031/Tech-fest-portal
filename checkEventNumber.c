@@ -7,8 +7,8 @@ int checkEventNumber(int i)
     {
         fscanf(check,"%d",&checkn);
         if(checkn==i)
-            return 1;
+            return 0;
 
     }
-    return 0;
+    return 1;
 }

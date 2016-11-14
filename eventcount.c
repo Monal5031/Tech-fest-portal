@@ -1,9 +1,10 @@
 int eventCount(int change)
 {
     FILE *count;
+    int counter;
     if(change==1)
         {
-            int counter;
+
             count=fopen("EventCount.txt","r");
             fscanf(count,"%d",&counter);
             counter++;
@@ -11,7 +12,7 @@ int eventCount(int change)
             count=fopen("EventCount.txt","w");
             fprintf(count,"%d",counter);
             fclose(count);
-            return 0;
+            return counter;
         }
     else
         {

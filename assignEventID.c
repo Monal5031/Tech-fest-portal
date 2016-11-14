@@ -1,9 +1,9 @@
- long int assignEventID()
+long int assignEventID()
  {
 
  long int count;
   FILE *fp;
-         fp1=fopen("eventid.txt","r");
+         fp=fopen("eventid.txt","r");
          fscanf(fp,"%ld",&count);
         fclose(fp);
         count++;

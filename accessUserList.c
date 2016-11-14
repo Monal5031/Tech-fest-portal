@@ -14,5 +14,5 @@ void accessUserList()
     int choice;
     scanf("%d",&choice);
     if(choice==1)
-        adminMenu();
+        adminMenu(1);
 }
