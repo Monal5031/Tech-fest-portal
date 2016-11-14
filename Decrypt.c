@@ -4,3 +4,6 @@ void decrypt(char pass[])
     for(i=0;i<strlen(pass);i++)
             pass[i]-=10;
 }
+
+
+

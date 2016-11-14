@@ -9,7 +9,7 @@ void adminMenu(int skipper)
         char pass[13];
         fscanf(adminpass,"%s",pass);
         decrypt(pass);
-        fclose(adminpass);
+       
         passer=authenticate(1,pass);
             if(passer==0)
                 {
@@ -55,6 +55,6 @@ void adminMenu(int skipper)
                     }
                 }
 
-
+              fclose(adminpass);
              return;
     }

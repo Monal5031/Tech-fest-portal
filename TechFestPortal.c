@@ -995,8 +995,21 @@ void changePassword(char pass[])
     printf("");
     char checkpass[13];
     printf("\tEnter Your Old Password:");
-    scanf("%s",checkpass);
-    if(strcmp(checkpass,pass)!=0)
+     scanf("%s",checkpass);
+    int length;
+    int flag=0;
+    printf("\n%s\n",pass);
+    length=strlen(checkpass);
+    int i;
+    for(i=0;i<length;i++)
+      {
+           if(checkpass[i]!=pass[i])
+              {
+                   flag=1;
+                   break;
+              }
+      }
+    if(flag!=0)
     {
         printf("WRONG PASSWORD!! ENTER AGAIN:\n\t");
         goto up;
@@ -1147,6 +1160,7 @@ void adminMenu(int skipper)
             goto skip;
         int j;
         FILE *adminpass;
+        FILE *adminpass1;
         adminpass=fopen("AdminPassword.txt","r");
         int passer=0;
         char pass[13];
@@ -1163,6 +1177,14 @@ void adminMenu(int skipper)
             else
                 {
                     skip:
+
+
+                      adminpass1=fopen("AdminPassword.txt","r");
+
+                      char pass2[13];
+                      fscanf(adminpass,"%s",pass2);
+                      decrypt(pass2);
+                      fclose(adminpass);
                     system("cls");
                     int choice;
                     printf("\n\n\t1.Create Event\n\t2.Modify Event Information\n\t3.Change Password\n\t4.Access User List(All Events)\n\t5.Access Event Wise List\n\t6.Log Out");
@@ -1177,7 +1199,7 @@ void adminMenu(int skipper)
                         modifyEventInfo();
                         break;
                     case 3:
-                        changePassword(pass);
+                        changePassword(pass2);
                         break;
                     case 4:
                         accessUserList();
