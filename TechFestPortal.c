@@ -378,7 +378,7 @@ void registerUserEvent(char id[])
 
 
 
-void OldUserMenu(char id[])
+int OldUserMenu(char id[])
 {
     char pass[13];
     FILE *passf;
@@ -429,6 +429,7 @@ void OldUserMenu(char id[])
         mainMenu();
         break;
     }
+    return 0;
 }
 
 
@@ -737,7 +738,7 @@ void accessUserList()
 
 
 
-void viewEventInfo(int skipper,char id[])
+int viewEventInfo(int skipper,char id[])
 {
     FILE *info;
     info=fopen("EventInfo.txt","r");
@@ -776,6 +777,7 @@ void viewEventInfo(int skipper,char id[])
     case 3:
         system("cls");
     }
+    return 0;
 }
 
 void fillEventInfo(char name[],char time[],char infor[])
@@ -807,7 +809,7 @@ void credits()
 }
 
 
-void viewList(int skipper,char id[])
+int viewList(int skipper,char id[])
 {
 
     if(skipper==1)
@@ -832,6 +834,7 @@ void viewList(int skipper,char id[])
     fordelay(100000000);
     if(skipper==1)
         OldUserMenu(id);
+return 0;
 }
 
 
@@ -919,7 +922,7 @@ void newUser()
 
 
 
-void userMenu()
+int userMenu()
 {
     system("cls");
     printf("\n\t1.New user\n\t2.Old User\n\t3.Event Information\n\t4.Event Schedule\n\t5.Main Menu");
@@ -947,7 +950,7 @@ void userMenu()
         system("cls");
         mainMenu();
     }
-return;
+return 0;
 }
 
 void createEvent()
@@ -1051,25 +1054,28 @@ void changePassword(char pass[])
 
 
 
-void encrypt(char pass[])
+int encrypt(char pass[])
 {
     int i;
     for(i=0;i<strlen(pass);i++)
             pass[i]=pass[i]+10;
+return 0;
 }
-void decrypt(char pass[])
+int decrypt(char pass[])
 {
     int i;
     for(i=0;i<strlen(pass);i++)
             pass[i]-=10;
+return 0;
 }
-void fordelay(int j)
+int fordelay(int j)
 {   int i,k;
     for(i=0;i<j;i++)
          k=i;
+return 0;
 }
 
-void enterPass(char pass[])
+int enterPass(char pass[])
  {
 char ch;
 int i=0,j;
@@ -1105,6 +1111,7 @@ i = 0;
 }
 
 pass[i] = '\0';
+return 0;
 }
 
 
@@ -1154,7 +1161,7 @@ int authenticate(int caser,char pass[])
     }
     }
 
-void adminMenu(int skipper)
+int adminMenu(int skipper)
     {
         if(skipper==1)
             goto skip;
@@ -1221,10 +1228,10 @@ void adminMenu(int skipper)
                 }
 
 
-             return;
+             return 0;
     }
 
-void mainMenu()
+int mainMenu()
     {
     system("cls");
     int choice,i=0;
@@ -1258,9 +1265,12 @@ void mainMenu()
         fordelay(100000000);
         mainMenu();
     }
+    return 0;
     }
+
 int main()
     {
+    system("COLOR 0A");
     mainMenu();
     system("cls");
     printf("\n\n\tThanks for visiting! Please visit again!\n\n");
