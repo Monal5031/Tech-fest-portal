@@ -567,27 +567,26 @@ void modifyTime(char event[])
     char newtime[50],newtime1[50];
     scanf("%s",newtime);
     strcpy(newtime1,newtime);
-    strcat(newtime,"                   ");
-    char eventname[50]="Name:";
-    strcat(eventname,event);
     char check[30];
     while(!feof(change))
     {
         fscanf(change,"%s",check);
-        if(strcmp(eventname,check)==0)
+        if(strcmp(event,check)==0)
         {
-            char ch;
-            fscanf(change,"%c",&ch);
+            //printf("1.%s\n",check);
             fscanf(change,"%s",check);
+            //printf("2.%s\n",check);
+            fscanf(change,"%s",check);
+            //printf("3.%s\n",check);
             fseek(change,-strlen(check), SEEK_CUR);
-            fprintf(change,"Time:%s",newtime);
+            fprintf(change,"%s",newtime);
             break;
         }
     }
-    system("cls");
+    //system("cls");
     printf("\t\t*******EVENT TIME SUCCESSFULLY CHANGED*******");
     printf("\n\tOld time:%s\n",check);
-    printf("\tNew Time:%s",newtime1);
+    printf("\tNew Time:%s",newtime);
     fordelay(1000000);
     fordelay(1000000);
     fordelay(1000000);
@@ -600,20 +599,39 @@ void modifyTime(char event[])
 void modifyName(char event[])
 {
     FILE *change;
-    change=fopen("EventInfo.txt","r+");
+    change=fopen("EventList.txt","r+");
     printf("Enter the New Name of the event: ");
     char newname[50],newname1[50];
     scanf("%s",newname);
     strcpy(newname1,newname);
-    strcat(newname,"                   ");
+    char check[30];
+    //("%s %s",newname1,newname);
+    /*while(!feof(change))
+    {
+        fscanf(change," %s",check);
+        printf("%s\n",check);
+        if(strcmp(check,event)==0)
+        {
+            fseek(change,-strlen(check),SEEK_CUR);
+            fprintf(change,"%s",check);
+            printf("INSIDE\n");
+            break;
+        }
+
+    }*/
     while(!feof(change))
     {
-        char check[30];
+
         fscanf(change,"%s",check);
-        if(strcmp(newname,check)==0)
+        //printf("%s\n",check);
+        if(strcmp(event,check)==0)
         {
             fseek(change, -strlen(check), SEEK_CUR);
-            fprintf(change,"%s",newname);
+            fprintf(change,"%s\n",newname);
+            int counter=strlen(check)-strlen(newname);
+            if(counter>0)
+            while(counter--)
+                fprintf(change," ");
             break;
         }
     }
@@ -621,6 +639,7 @@ void modifyName(char event[])
     printf("\t\t*******EVENT NAME SUCCESSFULLY CHANGED*******");
     printf("\n\tOld Name:%s\n",event);
     printf("\tNew Name:%s",newname1);
+    fclose(change);
     fordelay(1000000);
     fordelay(1000000);
     fordelay(1000000);
@@ -629,14 +648,15 @@ void modifyName(char event[])
 
 
 
+
 void modifyEventInfo()
 {
     loop:
     system("cls");
-    viewList();
+    viewList(0," ");
     printf("\t\t****Enter which event you want to modify*******\n");
     char event[30];
-    printf("\nEnter Which do you want to modify:");
+    printf("\nEnter the name of event you want to modify:");
     scanf("%s",&event);
     printf("\tEnter what do you want to modify:\n\t");
     printf("1.Name\n\t2.Time\n\t3.Information\n\tEnter:");
@@ -809,32 +829,33 @@ void credits()
 }
 
 
-int viewList(int skipper,char id[])
+void viewList(int skipper,char id[])
 {
-
+    int num=1;
     if(skipper==1)
         system("cls");
     printf("\t\t***********LIST OF ALL EVENTS***********\n");
     FILE *view;
     view=fopen("EventList.txt","r");
+    char event[20];
     while(!feof(view))
     {
-        char event[20];
-        fscanf(view,"%s",event);
+        fscanf(view," %[^\n\t]s",event);
         printf("%s\n",event);
-
     }
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
-    fordelay(100000000);
     if(skipper==1)
+    {
         OldUserMenu(id);
-return 0;
+   // fordelay(100000000);
+    //fordelay(100000000);
+ //   fordelay(100000000);
+   // fordelay(100000000);
+    //fordelay(100000000);
+    //fordelay(100000000);
+    //fordelay(100000000);
+   // fordelay(100000000);
+    }
+return ;
 }
 
 
@@ -1278,3 +1299,4 @@ int main()
     credits();
     return 0;
     }
+

@@ -1,10 +1,8 @@
-	1. LanGaming
-	2. Webpreneurship
+	1. Lan
+      	2. Webpreneurship
 	3. #Coding
 	4. Webeinstein
 	5. Hackathon
 	6. Coding
 	7. Hacker
-	8. hackathon
-	9. 
-	10. 
+	8. hacka

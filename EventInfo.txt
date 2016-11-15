@@ -1,30 +1,27 @@
-Name:LanGaming
-Time:12:00pm                   
-Information:The gaming event.
-Name:Hacker
-Time:10:00am
-Information:New event
+Name: Lan
+Time: 08:00pm                   
+Informtion:The gaming event.
 
-Name:New
-Time:01:00pm
+Name: Hacker
+Time: 10:00am
+Information:The Tp hack event
+
+Name: hacking
+Time: 01:00pm
 Information:PureLy new event
 
-Name:NewEvent
-Time:02:00pm
-Information:NEW EVENT
+Name: Changed 
+Time: 02:00pm
+Information:Still...                   
 
-Name:NEW Event
-Time:03:00pm
-Information:NEw Event
-
-Name:hackathon
-Time:03:52:00
+Name: hackathon
+Time: 03:52:00
 Information:24 hour hackathon
 
-Name:
-Time:hello
-Information:
+Name :New Event
+Time: 12:00pm
+Information:Still a new event
 
-Name:
-Time:hello
-Information:
+Name: Hackathon
+Time: 13:52:00
+Information:Hackin only
