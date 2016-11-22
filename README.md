@@ -20,4 +20,7 @@ We have tried to <b>encrypt</b> the password but its the most <b>basic encryptio
                       b.a lowecase letter.<br>
                       c.a number.<br>
                       d.a special character.<br>
+******************************************************************<br>
+	To run the code in Linux<br>
+add : "#define UBUNTU" at top (without quotes)<br>
  
